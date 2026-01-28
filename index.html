@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>THỐNG OFFICIAL</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="THỐNG OFFICIAL – Kênh âm nhạc & sáng tạo nội dung, video giải trí và cảm xúc dành cho giới trẻ.">
+  <meta name="description" content="THỐNG OFFICIAL – Kênh âm nhạc, sáng tạo nội dung và video cảm xúc dành cho giới trẻ Việt Nam.">
 
   <style>
     body {
@@ -14,76 +14,52 @@
       color: #1c1e21;
     }
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    .header {
-      background: linear-gradient(135deg, #1877f2, #42a5f5);
-      color: #fff;
-      padding: 40px 20px;
-      border-radius: 16px;
+    header {
+      background: #1877f2;
+      color: white;
+      padding: 18px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    }
-
-    .header h1 {
-      margin: 0;
-      font-size: 36px;
-    }
-
-    .header p {
-      opacity: 0.9;
-      margin-top: 10px;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 14px 28px;
-      background: #fff;
-      color: #1877f2;
-      text-decoration: none;
+      font-size: 26px;
       font-weight: bold;
-      border-radius: 30px;
-      transition: 0.3s;
     }
 
-    .btn:hover {
-      background: #e4e6eb;
+    .container {
+      max-width: 1000px;
+      margin: 25px auto;
+      padding: 0 15px;
     }
 
     .card {
       background: #fff;
-      border-radius: 16px;
-      padding: 20px;
-      margin-top: 25px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
-
-    .card h2 {
-      margin-top: 0;
-      color: #1877f2;
-    }
-
-    /* Video */
-    .video-wrapper {
-      position: relative;
-      padding-top: 56.25%;
       border-radius: 12px;
-      overflow: hidden;
-      margin-top: 15px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
-    .video-wrapper iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
+    h2 {
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
+
+    p {
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 24px;
+      background: #1877f2;
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      background: #145dd1;
     }
 
     table {
@@ -104,92 +80,95 @@
 
     footer {
       text-align: center;
-      opacity: 0.6;
-      margin: 30px 0 10px;
+      padding: 20px;
       font-size: 14px;
+      color: #777;
+    }
+
+    .video-box {
+      position: relative;
+      padding-top: 56.25%;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 15px;
+    }
+
+    .video-box iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
 
-    <!-- Header -->
-    <div class="header">
-      <h1>🎵 THỐNG OFFICIAL</h1>
-      <p>Kênh âm nhạc & sáng tạo nội dung dành cho giới trẻ Việt Nam</p>
-      <a class="btn" href="https://www.youtube.com/@Thongoffical" target="_blank">
-        ▶️ Truy cập kênh YouTube
-      </a>
-    </div>
+<header>
+  THỐNG OFFICIAL
+</header>
 
-    <!-- Giới thiệu -->
-    <div class="card">
-      <h2>📌 Giới thiệu</h2>
-      <p>
-        THỐNG OFFICIAL là nơi chia sẻ những bản nhạc cảm xúc,
-        video giải trí và câu chuyện gần gũi với giới trẻ.
-      </p>
-    </div>
+<div class="container">
 
-    <!-- Video nhúng -->
-    <div class="card">
-  <h2>🎬 Video mới nhất từ THỐNG OFFICIAL</h2>
-
-  <div style="
-    position: relative;
-    padding-top: 56.25%;
-    border-radius: 12px;
-    overflow: hidden;
-    margin-top: 15px;
-  ">
-    <iframe
-      src="https://www.youtube.com/embed?listType=user_uploads&list=Thongoffical"
-      style="
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-      "
-      allowfullscreen>
-    </iframe>
+  <!-- Giới thiệu -->
+  <div class="card">
+    <h2>🎵 Giới thiệu</h2>
+    <p>
+      THỐNG OFFICIAL là kênh âm nhạc & sáng tạo nội dung,
+      chia sẻ những bản nhạc cảm xúc, video giải trí và câu chuyện
+      gần gũi dành cho giới trẻ Việt Nam.
+    </p>
+    <a class="btn" href="https://www.youtube.com/@Thongoffical" target="_blank">
+      ▶ Xem kênh YouTube
+    </a>
   </div>
+
+  <!-- Video tự động -->
+  <div class="card">
+    <h2>🎬 Video mới nhất</h2>
+    <div class="video-box">
+      <iframe
+        src="https://www.youtube.com/embed?listType=user_uploads&list=Thongoffical"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <p>👉 Video sẽ **tự cập nhật** mỗi khi bạn đăng video mới.</p>
+  </div>
+
+  <!-- Thông tin kênh -->
+  <div class="card">
+    <h2>📊 Thông tin kênh</h2>
+    <table>
+      <tr>
+        <th>Nội dung</th>
+        <th>Chi tiết</th>
+      </tr>
+      <tr>
+        <td>Tên kênh</td>
+        <td>THỐNG OFFICIAL</td>
+      </tr>
+      <tr>
+        <td>Thể loại</td>
+        <td>Âm nhạc – Giải trí – Cảm xúc</td>
+      </tr>
+      <tr>
+        <td>Đối tượng</td>
+        <td>Giới trẻ Việt Nam</td>
+      </tr>
+      <tr>
+        <td>Nền tảng</td>
+        <td>YouTube</td>
+      </tr>
+    </table>
+  </div>
+
 </div>
 
+<footer>
+  © 2026 THỐNG OFFICIAL · Website chạy bằng GitHub Pages
+</footer>
 
-    <!-- Bảng thông tin -->
-    <div class="card">
-      <h2>📊 Thông tin kênh</h2>
-      <table>
-        <tr>
-          <th>Nội dung</th>
-          <th>Chi tiết</th>
-        </tr>
-        <tr>
-          <td>Tên kênh</td>
-          <td>THỐNG OFFICIAL</td>
-        </tr>
-        <tr>
-          <td>Thể loại</td>
-          <td>Âm nhạc, giải trí, cảm xúc</td>
-        </tr>
-        <tr>
-          <td>Nền tảng</td>
-          <td>YouTube</td>
-        </tr>
-        <tr>
-          <td>Link</td>
-          <td>youtube.com/@Thongoffical</td>
-        </tr>
-      </table>
-    </div>
-
-    <footer>
-      © 2026 THỐNG OFFICIAL • Powered by GitHub Pages
-    </footer>
-
-  </div>
 </body>
 </html>
