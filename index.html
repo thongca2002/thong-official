@@ -1,128 +1,124 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>THỐNG OFFICIAL</title>
+  <meta charset="UTF-8" />
+  <title>THỐNG OFFICIAL</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Kênh YouTube THỐNG OFFICIAL – Âm nhạc & cảm xúc cho giới trẻ Việt Nam">
+  
+  <link rel="icon" href="favicon.ico">
 
-<!-- SEO -->
-<meta name="description" content="THỐNG OFFICIAL - Kênh âm nhạc & giải trí Việt Nam">
-<meta name="keywords" content="Thống Official, nhạc Việt, YouTube">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f1f3f4;
+      color: #000;
+    }
 
-<!-- Favicon -->
-<link rel="icon" href="favicon.ico">
+    header {
+      padding: 16px;
+      font-size: 24px;
+      font-weight: bold;
+    }
 
-<style>
-:root{
-  --bg:#f5f7fb;
-  --card:#fff;
-  --text:#111;
-}
-.dark{
-  --bg:#0f172a;
-  --card:#1e293b;
-  --text:#f1f5f9;
-}
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-}
-header{
-  padding:20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-button{
-  padding:8px 14px;
-  border:none;
-  border-radius:20px;
-  cursor:pointer;
-}
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:20px;
-}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-  gap:20px;
-}
-.card{
-  background:var(--card);
-  border-radius:16px;
-  overflow:hidden;
-  box-shadow:0 8px 20px rgba(0,0,0,.1);
-}
-iframe{
-  width:100%;
-  height:200px;
-}
-.info{
-  padding:10px;
-  font-size:14px;
-}
-.search{
-  width:100%;
-  padding:12px;
-  border-radius:30px;
-  border:1px solid #ccc;
-  margin-bottom:20px;
-}
-</style>
+    .search {
+      max-width: 600px;
+      margin: 20px auto;
+    }
+
+    .search input {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      border-radius: 30px;
+      border: 1px solid #ccc;
+    }
+
+    .videos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+      padding: 20px;
+    }
+
+    .video {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,.1);
+    }
+
+    .video img {
+      width: 100%;
+    }
+
+    .video .info {
+      padding: 10px;
+    }
+
+    .video h3 {
+      font-size: 16px;
+      margin: 0 0 6px;
+    }
+
+    .video p {
+      font-size: 13px;
+      color: #555;
+      margin: 0;
+    }
+  </style>
 </head>
 
 <body>
-<header>
-  <h2>THỐNG OFFICIAL</h2>
-  <button onclick="toggleDark()">🌙</button>
-</header>
 
-<div class="container">
-<input class="search" placeholder="🔍 Tìm video..." onkeyup="filterVideo(this.value)">
+<header>THỐNG OFFICIAL</header>
 
-<div id="videos" class="grid"></div>
+<div class="search">
+  <input type="text" placeholder="Tìm video..." onkeyup="searchVideo(this.value)">
 </div>
 
+<div class="videos" id="videos"></div>
+
 <script>
-const API_KEY = "DAN_API_CUA_BAN_VAO_DAY";
-const CHANNEL_ID = "UCxxxxxxxxxxxx";
+const API_KEY = "DÁN_API_KEY_VÀO_ĐÂY";
+const CHANNEL_ID = "DÁN_CHANNEL_ID_VÀO_ĐÂY";
 
-async function loadVideos(){
-  const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet&order=date&maxResults=9`;
-  const res = await fetch(url);
-  const data = await res.json();
+let allVideos = [];
+
+fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=12`)
+  .then(res => res.json())
+  .then(data => {
+    allVideos = data.items;
+    renderVideos(allVideos);
+  });
+
+function renderVideos(list) {
   const box = document.getElementById("videos");
-  box.innerHTML="";
-  data.items.forEach(v=>{
-    const id = v.id.videoId;
-    const title = v.snippet.title;
-    const date = new Date(v.snippet.publishedAt).toLocaleDateString("vi-VN");
+  box.innerHTML = "";
+  list.forEach(v => {
+    if (!v.id.videoId) return;
     box.innerHTML += `
-    <div class="card">
-      <iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe>
-      <div class="info">
-        <b>${title}</b><br>
-        📅 ${date}
+      <div class="video">
+        <a href="https://www.youtube.com/watch?v=${v.id.videoId}" target="_blank">
+          <img src="${v.snippet.thumbnails.medium.url}">
+        </a>
+        <div class="info">
+          <h3>${v.snippet.title}</h3>
+          <p>${new Date(v.snippet.publishedAt).toLocaleDateString("vi-VN")}</p>
+        </div>
       </div>
-    </div>`;
-  })
+    `;
+  });
 }
 
-function toggleDark(){
-  document.body.classList.toggle("dark");
+function searchVideo(text) {
+  const filtered = allVideos.filter(v =>
+    v.snippet.title.toLowerCase().includes(text.toLowerCase())
+  );
+  renderVideos(filtered);
 }
-
-function filterVideo(k){
-  document.querySelectorAll(".card").forEach(c=>{
-    c.style.display = c.innerText.toLowerCase().includes(k.toLowerCase())?"":"none";
-  })
-}
-
-loadVideos();
 </script>
+
 </body>
 </html>
