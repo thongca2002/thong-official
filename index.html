@@ -1,174 +1,128 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <title>THỐNG OFFICIAL</title>
-  <meta name="description" content="THỐNG OFFICIAL – Kênh âm nhạc, video cảm xúc & giải trí dành cho giới trẻ Việt Nam">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>THỐNG OFFICIAL</title>
 
-  <!-- SEO -->
-  <meta name="robots" content="index, follow">
+<!-- SEO -->
+<meta name="description" content="THỐNG OFFICIAL - Kênh âm nhạc & giải trí Việt Nam">
+<meta name="keywords" content="Thống Official, nhạc Việt, YouTube">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <style>
-    :root {
-      --bg: #ffffff;
-      --text: #202124;
-      --card: #f1f3f4;
-    }
-    body.dark {
-      --bg: #202124;
-      --text: #e8eaed;
-      --card: #303134;
-    }
+<!-- Favicon -->
+<link rel="icon" href="favicon.ico">
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      transition: 0.3s;
-    }
-
-    header {
-      padding: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-    }
-
-    .toggle {
-      cursor: pointer;
-      font-size: 18px;
-    }
-
-    .search-box {
-      max-width: 600px;
-      margin: 20px auto;
-      display: flex;
-      background: var(--card);
-      border-radius: 24px;
-      padding: 10px 15px;
-    }
-
-    .search-box input {
-      border: none;
-      outline: none;
-      background: transparent;
-      width: 100%;
-      font-size: 16px;
-      color: var(--text);
-    }
-
-    .videos {
-      max-width: 1100px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-
-    .video {
-      background: var(--card);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    iframe {
-      width: 100%;
-      height: 170px;
-      border: none;
-    }
-
-    .info {
-      padding: 10px;
-    }
-
-    .title {
-      font-weight: bold;
-      font-size: 15px;
-    }
-
-    .meta {
-      font-size: 13px;
-      opacity: 0.8;
-      margin-top: 5px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      opacity: 0.7;
-    }
-  </style>
+<style>
+:root{
+  --bg:#f5f7fb;
+  --card:#fff;
+  --text:#111;
+}
+.dark{
+  --bg:#0f172a;
+  --card:#1e293b;
+  --text:#f1f5f9;
+}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+header{
+  padding:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+button{
+  padding:8px 14px;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+}
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:20px;
+}
+.card{
+  background:var(--card);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 8px 20px rgba(0,0,0,.1);
+}
+iframe{
+  width:100%;
+  height:200px;
+}
+.info{
+  padding:10px;
+  font-size:14px;
+}
+.search{
+  width:100%;
+  padding:12px;
+  border-radius:30px;
+  border:1px solid #ccc;
+  margin-bottom:20px;
+}
+</style>
 </head>
 
 <body>
-  <header>
-    <div class="logo">THỐNG OFFICIAL</div>
-    <div class="toggle" onclick="toggleDark()">🌙</div>
-  </header>
+<header>
+  <h2>THỐNG OFFICIAL</h2>
+  <button onclick="toggleDark()">🌙</button>
+</header>
 
-  <div class="search-box">
-    <input type="text" id="search" placeholder="Tìm kiếm video..." onkeyup="filterVideos()">
-  </div>
+<div class="container">
+<input class="search" placeholder="🔍 Tìm video..." onkeyup="filterVideo(this.value)">
 
-  <div class="videos" id="videos"></div>
-
-  <footer>
-    © 2026 THỐNG OFFICIAL • Auto by YouTube API
-  </footer>
+<div id="videos" class="grid"></div>
+</div>
 
 <script>
-  const API_KEY = "DAN_API_KEY_VAO_DAY";
-  const CHANNEL_ID = "DAN_CHANNEL_ID_VAO_DAY";
+const API_KEY = "DAN_API_CUA_BAN_VAO_DAY";
+const CHANNEL_ID = "UCxxxxxxxxxxxx";
 
-  const videoBox = document.getElementById("videos");
-  let allVideos = [];
+async function loadVideos(){
+  const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet&order=date&maxResults=9`;
+  const res = await fetch(url);
+  const data = await res.json();
+  const box = document.getElementById("videos");
+  box.innerHTML="";
+  data.items.forEach(v=>{
+    const id = v.id.videoId;
+    const title = v.snippet.title;
+    const date = new Date(v.snippet.publishedAt).toLocaleDateString("vi-VN");
+    box.innerHTML += `
+    <div class="card">
+      <iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe>
+      <div class="info">
+        <b>${title}</b><br>
+        📅 ${date}
+      </div>
+    </div>`;
+  })
+}
 
-  fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=12`)
-    .then(res => res.json())
-    .then(data => {
-      data.items.forEach(item => {
-        if (item.id.videoId) {
-          fetch(`https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&id=${item.id.videoId}&part=statistics`)
-            .then(r => r.json())
-            .then(stat => {
-              const views = stat.items[0].statistics.viewCount;
-              addVideo(item, views);
-            });
-        }
-      });
-    });
+function toggleDark(){
+  document.body.classList.toggle("dark");
+}
 
-  function addVideo(item, views) {
-    const date = new Date(item.snippet.publishedAt).toLocaleDateString("vi-VN");
-    const html = `
-      <div class="video">
-        <iframe src="https://www.youtube.com/embed/${item.id.videoId}" allowfullscreen></iframe>
-        <div class="info">
-          <div class="title">${item.snippet.title}</div>
-          <div class="meta">${views} lượt xem • ${date}</div>
-        </div>
-      </div>`;
-    allVideos.push(html);
-    videoBox.innerHTML += html;
-  }
+function filterVideo(k){
+  document.querySelectorAll(".card").forEach(c=>{
+    c.style.display = c.innerText.toLowerCase().includes(k.toLowerCase())?"":"none";
+  })
+}
 
-  function filterVideos() {
-    const key = document.getElementById("search").value.toLowerCase();
-    videoBox.innerHTML = "";
-    allVideos.filter(v => v.toLowerCase().includes(key)).forEach(v => videoBox.innerHTML += v);
-  }
-
-  function toggleDark() {
-    document.body.classList.toggle("dark");
-  }
+loadVideos();
 </script>
 </body>
 </html>
