@@ -89,36 +89,45 @@ let allVideos = [];
 fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=12`)
   .then(res => res.json())
   .then(data => {
+    const videoIds = data.items
+      .filter(item => item.id.videoId)
+      .map(item => item.id.videoId)
+      .join(",");
+
+    return fetch(`https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&id=${videoIds}&part=snippet,statistics`);
+  })
+  .then(res => res.json())
+  .then(data => {
     allVideos = data.items;
     renderVideos(allVideos);
   });
 
-function renderVideos(list) {
-  const box = document.getElementById("videos");
-  box.innerHTML = "";
-  list.forEach(v => {
-    if (!v.id.videoId) return;
-    box.innerHTML += `
+function renderVideos(videos) {
+  const container = document.getElementById("video");
+  container.innerHTML = "";
+
+  videos.forEach(v => {
+    container.innerHTML += `
       <div class="video">
-        <a href="https://www.youtube.com/watch?v=${v.id.videoId}" target="_blank">
+        <a href="https://www.youtube.com/watch?v=${v.id}" target="_blank">
           <img src="${v.snippet.thumbnails.medium.url}">
         </a>
-        <div class="info">
-          <h3>${v.snippet.title}</h3>
-          <p>${new Date(v.snippet.publishedAt).toLocaleDateString("vi-VN")}</p>
-        </div>
+        <h3>${v.snippet.title}</h3>
+        <p>👁 ${Number(v.statistics.viewCount).toLocaleString()} lượt xem</p>
+        <p>📅 ${new Date(v.snippet.publishedAt).toLocaleDateString("vi-VN")}</p>
       </div>
     `;
   });
 }
 
-function searchVideo(text) {
-  const filtered = allVideos.filter(v =>
-    v.snippet.title.toLowerCase().includes(text.toLowerCase())
+function timKiemVideo(keyword) {
+  const result = allVideos.filter(v =>
+    v.snippet.title.toLowerCase().includes(keyword.toLowerCase())
   );
-  renderVideos(filtered);
+  renderVideos(result);
 }
 </script>
+
 
 </body>
 </html>
