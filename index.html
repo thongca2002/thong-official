@@ -1,153 +1,174 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>THỐNG OFFICIAL</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>THỐNG OFFICIAL</title>
+  <meta name="description" content="THỐNG OFFICIAL – Kênh âm nhạc, video cảm xúc & giải trí dành cho giới trẻ Việt Nam">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f8f9fa;
-  color: #202124;
-}
+  <!-- SEO -->
+  <meta name="robots" content="index, follow">
 
-/* Header */
-header {
-  padding: 40px 20px 20px;
-  text-align: center;
-}
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #202124;
+      --card: #f1f3f4;
+    }
+    body.dark {
+      --bg: #202124;
+      --text: #e8eaed;
+      --card: #303134;
+    }
 
-.logo {
-  font-size: 48px;
-  font-weight: bold;
-  letter-spacing: -1px;
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: 0.3s;
+    }
 
-.logo span:nth-child(1){color:#4285f4}
-.logo span:nth-child(2){color:#ea4335}
-.logo span:nth-child(3){color:#fbbc05}
-.logo span:nth-child(4){color:#4285f4}
-.logo span:nth-child(5){color:#34a853}
-.logo span:nth-child(6){color:#ea4335}
+    header {
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-/* Search box */
-.search-box {
-  max-width: 600px;
-  margin: 30px auto;
-}
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+    }
 
-.search-box input {
-  width: 100%;
-  padding: 14px 20px;
-  font-size: 16px;
-  border-radius: 24px;
-  border: 1px solid #ddd;
-  outline: none;
-}
+    .toggle {
+      cursor: pointer;
+      font-size: 18px;
+    }
 
-.search-box input:focus {
-  box-shadow: 0 1px 6px rgba(32,33,36,.28);
-}
+    .search-box {
+      max-width: 600px;
+      margin: 20px auto;
+      display: flex;
+      background: var(--card);
+      border-radius: 24px;
+      padding: 10px 15px;
+    }
 
-/* Social */
-.social {
-  text-align: center;
-  margin-bottom: 30px;
-}
+    .search-box input {
+      border: none;
+      outline: none;
+      background: transparent;
+      width: 100%;
+      font-size: 16px;
+      color: var(--text);
+    }
 
-.social a {
-  margin: 0 10px;
-  text-decoration: none;
-  font-weight: bold;
-  color: #1a73e8;
-}
+    .videos {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
 
-/* Video grid */
-.container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 15px 40px;
-}
+    .video {
+      background: var(--card);
+      border-radius: 12px;
+      overflow: hidden;
+    }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-  gap: 20px;
-}
+    iframe {
+      width: 100%;
+      height: 170px;
+      border: none;
+    }
 
-.card {
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
-}
+    .info {
+      padding: 10px;
+    }
 
-.card iframe {
-  width: 100%;
-  height: 200px;
-  border: none;
-}
+    .title {
+      font-weight: bold;
+      font-size: 15px;
+    }
 
-.card p {
-  padding: 10px 12px;
-  font-size: 14px;
-  color: #555;
-}
+    .meta {
+      font-size: 13px;
+      opacity: 0.8;
+      margin-top: 5px;
+    }
 
-/* Footer */
-footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 13px;
-  color: #777;
-}
-</style>
+    footer {
+      text-align: center;
+      padding: 20px;
+      opacity: 0.7;
+    }
+  </style>
 </head>
 
 <body>
-
-<header>
-  <div class="logo">
-    <span>T</span><span>H</span><span>Ố</span><span>N</span><span>G</span><span></span>
-  </div>
+  <header>
+    <div class="logo">THỐNG OFFICIAL</div>
+    <div class="toggle" onclick="toggleDark()">🌙</div>
+  </header>
 
   <div class="search-box">
-    <input type="text" placeholder="Tìm video THỐNG OFFICIAL trên YouTube…">
+    <input type="text" id="search" placeholder="Tìm kiếm video..." onkeyup="filterVideos()">
   </div>
 
-  <div class="social">
-    <a href="https://www.youtube.com/@Thongoffical" target="_blank">YouTube</a>
-    <a href="#">Facebook</a>
-    <a href="#">TikTok</a>
-    <a href="#">Zalo</a>
-  </div>
-</header>
+  <div class="videos" id="videos"></div>
 
-<div class="container">
-  <div class="grid">
-    <!-- AUTO VIDEO -->
-    <div class="card">
-      <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=Thongoffical"></iframe>
-      <p>Video mới nhất – tự cập nhật</p>
-    </div>
+  <footer>
+    © 2026 THỐNG OFFICIAL • Auto by YouTube API
+  </footer>
 
-    <div class="card">
-      <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=Thongoffical"></iframe>
-      <p>Nội dung âm nhạc & cảm xúc</p>
-    </div>
+<script>
+  const API_KEY = "DAN_API_KEY_VAO_DAY";
+  const CHANNEL_ID = "DAN_CHANNEL_ID_VAO_DAY";
 
-    <div class="card">
-      <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=Thongoffical"></iframe>
-      <p>Video giải trí dành cho giới trẻ</p>
-    </div>
-  </div>
-</div>
+  const videoBox = document.getElementById("videos");
+  let allVideos = [];
 
-<footer>
-© 2026 THỐNG OFFICIAL · Google-style Web
-</footer>
+  fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=12`)
+    .then(res => res.json())
+    .then(data => {
+      data.items.forEach(item => {
+        if (item.id.videoId) {
+          fetch(`https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&id=${item.id.videoId}&part=statistics`)
+            .then(r => r.json())
+            .then(stat => {
+              const views = stat.items[0].statistics.viewCount;
+              addVideo(item, views);
+            });
+        }
+      });
+    });
 
+  function addVideo(item, views) {
+    const date = new Date(item.snippet.publishedAt).toLocaleDateString("vi-VN");
+    const html = `
+      <div class="video">
+        <iframe src="https://www.youtube.com/embed/${item.id.videoId}" allowfullscreen></iframe>
+        <div class="info">
+          <div class="title">${item.snippet.title}</div>
+          <div class="meta">${views} lượt xem • ${date}</div>
+        </div>
+      </div>`;
+    allVideos.push(html);
+    videoBox.innerHTML += html;
+  }
+
+  function filterVideos() {
+    const key = document.getElementById("search").value.toLowerCase();
+    videoBox.innerHTML = "";
+    allVideos.filter(v => v.toLowerCase().includes(key)).forEach(v => videoBox.innerHTML += v);
+  }
+
+  function toggleDark() {
+    document.body.classList.toggle("dark");
+  }
+</script>
 </body>
 </html>
