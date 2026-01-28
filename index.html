@@ -1,173 +1,152 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>THỐNG OFFICIAL</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="THỐNG OFFICIAL – Kênh âm nhạc, sáng tạo nội dung và video cảm xúc dành cho giới trẻ Việt Nam.">
+<meta charset="UTF-8">
+<title>THỐNG OFFICIAL</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f0f2f5;
-      color: #1c1e21;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f8f9fa;
+  color: #202124;
+}
 
-    header {
-      background: #1877f2;
-      color: white;
-      padding: 18px;
-      text-align: center;
-      font-size: 26px;
-      font-weight: bold;
-    }
+/* Header */
+header {
+  padding: 40px 20px 20px;
+  text-align: center;
+}
 
-    .container {
-      max-width: 1000px;
-      margin: 25px auto;
-      padding: 0 15px;
-    }
+.logo {
+  font-size: 48px;
+  font-weight: bold;
+  letter-spacing: -1px;
+}
 
-    .card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 25px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
+.logo span:nth-child(1){color:#4285f4}
+.logo span:nth-child(2){color:#ea4335}
+.logo span:nth-child(3){color:#fbbc05}
+.logo span:nth-child(4){color:#4285f4}
+.logo span:nth-child(5){color:#34a853}
+.logo span:nth-child(6){color:#ea4335}
 
-    h2 {
-      margin-top: 0;
-      margin-bottom: 12px;
-    }
+/* Search box */
+.search-box {
+  max-width: 600px;
+  margin: 30px auto;
+}
 
-    p {
-      line-height: 1.6;
-      color: #555;
-    }
+.search-box input {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 16px;
+  border-radius: 24px;
+  border: 1px solid #ddd;
+  outline: none;
+}
 
-    .btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 12px 24px;
-      background: #1877f2;
-      color: white;
-      text-decoration: none;
-      border-radius: 25px;
-      font-weight: bold;
-    }
+.search-box input:focus {
+  box-shadow: 0 1px 6px rgba(32,33,36,.28);
+}
 
-    .btn:hover {
-      background: #145dd1;
-    }
+/* Social */
+.social {
+  text-align: center;
+  margin-bottom: 30px;
+}
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
+.social a {
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #1a73e8;
+}
 
-    th, td {
-      padding: 12px;
-      border-bottom: 1px solid #ddd;
-      text-align: left;
-    }
+/* Video grid */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 15px 40px;
+}
 
-    th {
-      background: #f5f6f7;
-    }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+  gap: 20px;
+}
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-      color: #777;
-    }
+.card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
 
-    .video-box {
-      position: relative;
-      padding-top: 56.25%;
-      border-radius: 12px;
-      overflow: hidden;
-      margin-top: 15px;
-    }
+.card iframe {
+  width: 100%;
+  height: 200px;
+  border: none;
+}
 
-    .video-box iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-  </style>
+.card p {
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 13px;
+  color: #777;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  THỐNG OFFICIAL
+  <div class="logo">
+    <span>T</span><span>H</span><span>Ố</span><span>N</span><span>G</span><span></span>
+  </div>
+
+  <div class="search-box">
+    <input type="text" placeholder="Tìm video THỐNG OFFICIAL trên YouTube…">
+  </div>
+
+  <div class="social">
+    <a href="https://www.youtube.com/@Thongoffical" target="_blank">YouTube</a>
+    <a href="#">Facebook</a>
+    <a href="#">TikTok</a>
+    <a href="#">Zalo</a>
+  </div>
 </header>
 
 <div class="container">
-
-  <!-- Giới thiệu -->
-  <div class="card">
-    <h2>🎵 Giới thiệu</h2>
-    <p>
-      THỐNG OFFICIAL là kênh âm nhạc & sáng tạo nội dung,
-      chia sẻ những bản nhạc cảm xúc, video giải trí và câu chuyện
-      gần gũi dành cho giới trẻ Việt Nam.
-    </p>
-    <a class="btn" href="https://www.youtube.com/@Thongoffical" target="_blank">
-      ▶ Xem kênh YouTube
-    </a>
-  </div>
-
-  <!-- Video tự động -->
-  <div class="card">
-    <h2>🎬 Video mới nhất</h2>
-    <div class="video-box">
-      <iframe
-        src="https://www.youtube.com/embed?listType=user_uploads&list=Thongoffical"
-        allowfullscreen>
-      </iframe>
+  <div class="grid">
+    <!-- AUTO VIDEO -->
+    <div class="card">
+      <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=Thongoffical"></iframe>
+      <p>Video mới nhất – tự cập nhật</p>
     </div>
-    <p>👉 Video sẽ **tự cập nhật** mỗi khi bạn đăng video mới.</p>
-  </div>
 
-  <!-- Thông tin kênh -->
-  <div class="card">
-    <h2>📊 Thông tin kênh</h2>
-    <table>
-      <tr>
-        <th>Nội dung</th>
-        <th>Chi tiết</th>
-      </tr>
-      <tr>
-        <td>Tên kênh</td>
-        <td>THỐNG OFFICIAL</td>
-      </tr>
-      <tr>
-        <td>Thể loại</td>
-        <td>Âm nhạc – Giải trí – Cảm xúc</td>
-      </tr>
-      <tr>
-        <td>Đối tượng</td>
-        <td>Giới trẻ Việt Nam</td>
-      </tr>
-      <tr>
-        <td>Nền tảng</td>
-        <td>YouTube</td>
-      </tr>
-    </table>
-  </div>
+    <div class="card">
+      <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=Thongoffical"></iframe>
+      <p>Nội dung âm nhạc & cảm xúc</p>
+    </div>
 
+    <div class="card">
+      <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=Thongoffical"></iframe>
+      <p>Video giải trí dành cho giới trẻ</p>
+    </div>
+  </div>
 </div>
 
 <footer>
-  © 2026 THỐNG OFFICIAL · Website chạy bằng GitHub Pages
+© 2026 THỐNG OFFICIAL · Google-style Web
 </footer>
 
 </body>
