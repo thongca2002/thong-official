@@ -3,128 +3,147 @@
 <head>
   <meta charset="UTF-8">
   <title>THỐNG OFFICIAL</title>
-
-  <!-- SEO -->
-  <meta name="description" content="THỐNG OFFICIAL – Kênh âm nhạc & sáng tạo nội dung, video giải trí và cảm xúc dành cho giới trẻ Việt Nam.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <meta name="description" content="THỐNG OFFICIAL – Kênh âm nhạc & sáng tạo nội dung, video giải trí và cảm xúc dành cho giới trẻ.">
 
   <style>
     body {
       margin: 0;
-      font-family: 'Roboto', sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       background: #f0f2f5;
-      color: #050505;
+      color: #1c1e21;
     }
 
-    /* Header giống Facebook */
-    .header {
-      background: #1877f2;
-      padding: 20px;
-      color: white;
-      text-align: center;
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
-
-    /* Container */
     .container {
       max-width: 900px;
-      margin: 30px auto;
-      padding: 0 15px;
+      margin: auto;
+      padding: 20px;
     }
 
-    /* Card */
+    .header {
+      background: linear-gradient(135deg, #1877f2, #42a5f5);
+      color: #fff;
+      padding: 40px 20px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 36px;
+    }
+
+    .header p {
+      opacity: 0.9;
+      margin-top: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 14px 28px;
+      background: #fff;
+      color: #1877f2;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 30px;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #e4e6eb;
+    }
+
     .card {
-      background: white;
-      border-radius: 12px;
-      padding: 25px;
-      margin-bottom: 20px;
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 25px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
     .card h2 {
       margin-top: 0;
-      font-size: 22px;
-      margin-bottom: 10px;
+      color: #1877f2;
     }
 
-    .card p {
-      font-size: 16px;
-      line-height: 1.6;
-      color: #606770;
-    }
-
-    /* Button */
-    .btn {
-      display: inline-block;
+    /* Video */
+    .video-wrapper {
+      position: relative;
+      padding-top: 56.25%;
+      border-radius: 12px;
+      overflow: hidden;
       margin-top: 15px;
-      padding: 12px 25px;
-      background: #1877f2;
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      border-radius: 8px;
-      transition: 0.2s;
     }
 
-    .btn:hover {
-      background: #145dbf;
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
     }
 
-    /* Table */
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 15px;
+      margin-top: 10px;
     }
 
-    table th {
-      background: #e4e6eb;
-      padding: 12px;
-      text-align: left;
-      font-weight: 500;
-    }
-
-    table td {
+    th, td {
       padding: 12px;
       border-bottom: 1px solid #ddd;
-      color: #444;
+      text-align: left;
     }
 
-    /* Footer */
-    .footer {
+    th {
+      background: #f5f6f7;
+    }
+
+    footer {
       text-align: center;
-      padding: 20px;
+      opacity: 0.6;
+      margin: 30px 0 10px;
       font-size: 14px;
-      color: #888;
     }
   </style>
 </head>
 
 <body>
-
-  <div class="header">
-    THỐNG OFFICIAL
-  </div>
-
   <div class="container">
+
+    <!-- Header -->
+    <div class="header">
+      <h1>🎵 THỐNG OFFICIAL</h1>
+      <p>Kênh âm nhạc & sáng tạo nội dung dành cho giới trẻ Việt Nam</p>
+      <a class="btn" href="https://www.youtube.com/@Thongoffical" target="_blank">
+        ▶️ Truy cập kênh YouTube
+      </a>
+    </div>
 
     <!-- Giới thiệu -->
     <div class="card">
-      <h2>🎵 Giới thiệu</h2>
+      <h2>📌 Giới thiệu</h2>
       <p>
-        THỐNG OFFICIAL là kênh âm nhạc & sáng tạo nội dung,
-        chia sẻ những bản nhạc cảm xúc, video giải trí và câu chuyện
-        gần gũi dành cho giới trẻ Việt Nam.
+        THỐNG OFFICIAL là nơi chia sẻ những bản nhạc cảm xúc,
+        video giải trí và câu chuyện gần gũi với giới trẻ.
       </p>
-      <a class="btn" href="https://www.youtube.com/@Thongoffical" target="_blank">
-  ▶️ Xem kênh THỐNG OFFICIAL
-</a>
+    </div>
 
+    <!-- Video nhúng -->
+    <div class="card">
+      <h2>🎬 Video nổi bật</h2>
+      <div class="video-wrapper">
+        <iframe 
+          src="https://www.youtube.com/embed/VIDEO_ID_CUA_BAN"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <p style="margin-top:10px; opacity:0.8;">
+        👉 Thay <b>VIDEO_ID_CUA_BAN</b> bằng ID video YouTube bạn muốn hiển thị
+      </p>
     </div>
 
     <!-- Bảng thông tin -->
@@ -141,28 +160,23 @@
         </tr>
         <tr>
           <td>Thể loại</td>
-          <td>Âm nhạc – Giải trí – Cảm xúc</td>
-        </tr>
-        <tr>
-          <td>Đối tượng</td>
-          <td>Giới trẻ Việt Nam</td>
+          <td>Âm nhạc, giải trí, cảm xúc</td>
         </tr>
         <tr>
           <td>Nền tảng</td>
-          <td>YouTube, mạng xã hội</td>
+          <td>YouTube</td>
         </tr>
         <tr>
-          <td>Cập nhật</td>
-          <td>Video & nhạc mới thường xuyên</td>
+          <td>Link</td>
+          <td>youtube.com/@Thongoffical</td>
         </tr>
       </table>
     </div>
 
-  </div>
+    <footer>
+      © 2026 THỐNG OFFICIAL • Powered by GitHub Pages
+    </footer>
 
-  <div class="footer">
-    © 2026 THỐNG OFFICIAL • Powered by GitHub Pages
   </div>
-
 </body>
 </html>
