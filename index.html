@@ -3,159 +3,123 @@
 <head>
 <meta charset="UTF-8">
 <title>THỐNG OFFICIAL</title>
-
-<!-- SEO -->
-<meta name="description" content="Kênh YouTube chính thức của THỐNG OFFICIAL">
-<meta name="keywords" content="Thống Official, youtube, nhạc, video">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- Favicon (logo tab) -->
-<link rel="icon" href="https://www.youtube.com/s/desktop/8c8a5f2a/img/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 :root {
   --bg: #f2f3f5;
-  --card: #ffffff;
   --text: #000;
+  --card: #fff;
 }
-body.dark {
+.dark {
   --bg: #18191a;
-  --card: #242526;
   --text: #e4e6eb;
+  --card: #242526;
 }
-
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
 }
-
 header {
-  background: var(--card);
-  padding: 15px 20px;
-  font-size: 22px;
+  padding: 20px;
+  font-size: 24px;
   font-weight: bold;
+}
+.top {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  gap: 10px;
+  padding: 0 20px;
 }
-
-button {
-  cursor: pointer;
-  border: none;
-  border-radius: 20px;
-  padding: 8px 12px;
-}
-
-.search {
-  padding: 15px;
-}
-.search input {
-  width: 100%;
+input {
+  flex: 1;
   padding: 12px;
-  border-radius: 30px;
+  border-radius: 20px;
   border: none;
   outline: none;
 }
-
+button {
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+}
 #videos {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 15px;
-  padding: 15px;
+  grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+  gap: 20px;
+  padding: 20px;
 }
-
-.video {
+.card {
   background: var(--card);
   border-radius: 10px;
   overflow: hidden;
 }
-
-.video img {
+.card img {
   width: 100%;
 }
-
-.video .info {
+.card .info {
   padding: 10px;
 }
-
-.video h3 {
-  font-size: 15px;
-  margin: 5px 0;
-}
-
-.video p {
-  font-size: 12px;
+small {
   opacity: 0.7;
+}
+a {
+  color: inherit;
+  text-decoration: none;
 }
 </style>
 </head>
 
 <body>
-<header>
-  THỐNG OFFICIAL
-  <button onclick="toggleDark()">🌙</button>
-</header>
+<header>THỐNG OFFICIAL</header>
 
-<div class="search">
-  <input type="text" placeholder="Tìm video..." onkeyup="searchVideo(this.value)">
+<div class="top">
+  <input id="search" placeholder="Tìm video..." oninput="filterVideo()">
+  <button onclick="toggleDark()">🌙</button>
 </div>
 
 <div id="videos"></div>
 
 <script>
-/* ====== CẤU HÌNH ====== */
 const API_KEY = "AIzaSyCsxtAacHZNMFwzcoODKsDPjZF5KC8tQEI";
 const CHANNEL_ID = "UC4jdAkaD_bbavlenTLS_JfQ";
-const MAX_RESULTS = 12;
 
 let allVideos = [];
 
-/* ====== LOAD VIDEO ====== */
-fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=${MAX_RESULTS}`)
+fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet&type=video&order=date&maxResults=12`)
 .then(res => res.json())
 .then(data => {
   allVideos = data.items;
-  renderVideos(allVideos);
-})
-.catch(err => {
-  document.getElementById("videos").innerHTML = "❌ Không tải được video";
+  render(allVideos);
 });
 
-/* ====== HIỂN THỊ ====== */
-function renderVideos(list) {
+function render(list){
   const box = document.getElementById("videos");
   box.innerHTML = "";
-
-  list.forEach(v => {
-    if (!v.id.videoId) return;
-
+  list.forEach(v=>{
+    const id = v.id.videoId;
+    const s = v.snippet;
     box.innerHTML += `
-      <div class="video">
-        <a href="https://www.youtube.com/watch?v=${v.id.videoId}" target="_blank">
-          <img src="${v.snippet.thumbnails.medium.url}">
-        </a>
+    <a href="https://www.youtube.com/watch?v=${id}" target="_blank">
+      <div class="card">
+        <img src="${s.thumbnails.high.url}">
         <div class="info">
-          <h3>${v.snippet.title}</h3>
-          <p>${new Date(v.snippet.publishedAt).toLocaleDateString()}</p>
+          <b>${s.title}</b><br>
+          <small>${new Date(s.publishedAt).toLocaleDateString()}</small>
         </div>
       </div>
-    `;
+    </a>`;
   });
 }
 
-/* ====== SEARCH ====== */
-function searchVideo(key) {
-  const k = key.toLowerCase();
-  const filtered = allVideos.filter(v =>
-    v.snippet.title.toLowerCase().includes(k)
-  );
-  renderVideos(filtered);
+function filterVideo(){
+  const q = document.getElementById("search").value.toLowerCase();
+  render(allVideos.filter(v => v.snippet.title.toLowerCase().includes(q)));
 }
 
-/* ====== DARK MODE ====== */
-function toggleDark() {
+function toggleDark(){
   document.body.classList.toggle("dark");
 }
 </script>
